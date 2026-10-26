@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4dc9a;
+  --foreground: #243044;
+  --shutter: #1e5a76;
+  --bissap: #8e1a38;
+  --paper: #fff8e6;
+  --whatsapp: #0f6a4a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-limewash: var(--background);
+  --color-ink: var(--foreground);
+  --color-shutter: var(--shutter);
+  --color-bissap: var(--bissap);
+  --color-paper: var(--paper);
+  --color-whatsapp: var(--whatsapp);
+  --font-sans: var(--font-literata), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-zilla), "Palatino Linotype", Palatino, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+body > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--shutter);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 3px solid var(--bissap);
+  outline-offset: 3px;
 }
