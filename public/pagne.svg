@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 760" fill="none">
+  <rect width="640" height="760" fill="#E8B423"/>
+  <rect x="32" y="32" width="576" height="696" fill="#173560"/>
+  <g transform="translate(168,214)">
+    <polygon points="0,-128 96,0 0,128 -96,0" fill="#E8B423"/>
+    <polygon points="0,-74 56,0 0,74 -56,0" fill="#C2334E"/>
+    <polygon points="0,-28 22,0 0,28 -22,0" fill="#F7F4EE"/>
+  </g>
+  <g transform="translate(472,214)">
+    <polygon points="0,-128 96,0 0,128 -96,0" fill="#E8B423"/>
+    <polygon points="0,-74 56,0 0,74 -56,0" fill="#C2334E"/>
+    <polygon points="0,-28 22,0 0,28 -22,0" fill="#F7F4EE"/>
+  </g>
+  <g transform="translate(168,546)">
+    <polygon points="0,-128 96,0 0,128 -96,0" fill="#E8B423"/>
+    <polygon points="0,-74 56,0 0,74 -56,0" fill="#C2334E"/>
+    <polygon points="0,-28 22,0 0,28 -22,0" fill="#F7F4EE"/>
+  </g>
+  <g transform="translate(472,546)">
+    <polygon points="0,-128 96,0 0,128 -96,0" fill="#E8B423"/>
+    <polygon points="0,-74 56,0 0,74 -56,0" fill="#C2334E"/>
+    <polygon points="0,-28 22,0 0,28 -22,0" fill="#F7F4EE"/>
+  </g>
+  <circle cx="320" cy="214" r="10" fill="#F7F4EE"/>
+  <circle cx="320" cy="380" r="10" fill="#E8B423"/>
+  <circle cx="320" cy="546" r="10" fill="#F7F4EE"/>
+  <circle cx="168" cy="380" r="10" fill="#C2334E"/>
+  <circle cx="472" cy="380" r="10" fill="#C2334E"/>
+</svg>

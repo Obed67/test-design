@@ -1,69 +1,261 @@
-import Image from "next/image";
+const PHONE_DISPLAY = "+229 01 97 45 20 19";
+const PHONE_HREF = "tel:+2290197452019";
+const WHATSAPP_URL = `https://wa.me/2290197452019?text=${encodeURIComponent(
+  "Bonjour Maison Dossou, je voudrais commander.",
+)}`;
+const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Haie+Vive+Cotonou+Benin";
+const MAPS_EMBED =
+  "https://maps.google.com/maps?q=Haie%20Vive%2C%20Cotonou%2C%20B%C3%A9nin&z=15&output=embed";
+
+const products = [
+  {
+    name: "Pain au levain",
+    description:
+      "Mie irrégulière, croûte épaisse, blé et un peu de farine de manioc.",
+    price: "2\u202f500\u00a0FCFA",
+  },
+  {
+    name: "Croissant beurre",
+    description: "Feuilletage au beurre, cuit dans la matinée.",
+    price: "800\u00a0FCFA",
+  },
+  {
+    name: "Brioche au bissap",
+    description: "Pâte moelleuse, infusée aux fleurs d’hibiscus.",
+    price: "1\u202f500\u00a0FCFA",
+  },
+  {
+    name: "Tarte ananas-gingembre",
+    description: "Ananas pain de sucre et gingembre frais, sur pâte brisée.",
+    price: "6\u202f000\u00a0FCFA",
+  },
+  {
+    name: "Pain de mie complet",
+    description: "Tranches régulières, farines complètes, pour la maison.",
+    price: "2\u202f000\u00a0FCFA",
+  },
+  {
+    name: "Cookie coco-chocolat",
+    description: "Noix de coco râpée et chocolat, sorti l’après-midi.",
+    price: "700\u00a0FCFA",
+  },
+] as const;
+
+const sectionLinks = [
+  { href: "#histoire", label: "Histoire" },
+  { href: "#produits", label: "Produits" },
+  { href: "#horaires", label: "Horaires" },
+  { href: "#contact", label: "Contact" },
+] as const;
+
+const ctaClassName =
+  "btn-order inline-flex min-h-12 items-center justify-center px-5 font-display text-lg font-semibold";
+
+const headingClassName =
+  "shop-text font-display text-[2rem] leading-tight font-semibold tracking-tight md:text-5xl";
+
+function WhatsAppLink({ className }: { className: string }) {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      className={className}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Commander sur WhatsApp
+      <span className="sr-only"> (s’ouvre dans un nouvel onglet)</span>
+    </a>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <a
+        href="#contenu"
+        className="skip-link sr-only font-display"
+      >
+        Aller au contenu
+      </a>
+
+      <header className="tone-indigo sticky top-0 z-20">
+        <div className="site-bar mx-auto max-w-6xl px-5 py-1 md:px-10 md:py-2">
+          <a
+            href="#haut"
+            className="inline-flex min-h-11 items-center text-lg font-semibold"
+          >
+            Maison Dossou
+          </a>
+          <nav aria-label="Sections" className="section-nav">
+            {sectionLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:underline hover:underline-offset-4">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenu">
+        <section id="haut" className="tone-indigo">
+          <div className="hero-grid mx-auto max-w-6xl gap-10 px-5 pt-6 pb-14 md:px-10 md:pt-12 md:pb-20">
+            <div>
+              <h1 className="sign-in font-display text-[clamp(2.75rem,14vw,7rem)] leading-[0.88] font-semibold tracking-[-0.03em]">
+                <span className="block">Maison</span>
+                <span className="block">Dossou</span>
+              </h1>
+              <p className="mt-6 max-w-prose font-body text-xl leading-relaxed">
+                Du pain au levain, des viennoiseries, et le goût du Bénin dans
+                la pâte.
+              </p>
+              <WhatsAppLink className={`${ctaClassName} mt-8`} />
+            </div>
+            <img
+              src="/pagne.svg"
+              alt="Carré de pagne jaune ananas, avec des losanges indigo et un cœur rouge bissap."
+              width={640}
+              height={760}
+              className="w-full max-w-xs justify-self-start md:max-w-none"
+            />
+          </div>
+        </section>
+
+        <section id="histoire" className="scroll-mt-20 px-5 py-16 md:px-10 md:py-24">
+          <div className="story-grid mx-auto max-w-6xl gap-10">
+            <div>
+              <h2 className={headingClassName}>Notre histoire</h2>
+              <div className="mt-6 max-w-prose space-y-4 text-lg leading-relaxed">
+                <p>
+                  La famille Dossou tient la boutique depuis 2019, au quartier
+                  Haie Vive. Le levain est nourri sur place, chaque jour, dans
+                  le même seau depuis l’ouverture.
+                </p>
+                <p>
+                  Les recettes viennent d’une formation en France, et les
+                  ingrédients du marché d’ici : farine de manioc, ananas pain
+                  de sucre, gingembre, fleurs de bissap. Les premiers pains
+                  sortent du four avant six heures, pour ceux qui passent avant
+                  le travail.
+                </p>
+              </div>
+            </div>
+            <img
+              src="/levain.svg"
+              alt="Bocal de levain maison, pâte jaune et bulleuse, couvercle en tissu bissap."
+              width={480}
+              height={640}
+              className="w-full max-w-xs"
+            />
+          </div>
+        </section>
+
+        <section
+          id="produits"
+          className="scroll-mt-20 px-5 py-16 md:px-10 md:py-24"
+        >
+          <div className="mx-auto max-w-6xl">
+            <h2 className={headingClassName}>Produits phares</h2>
+            <p className="mt-4 max-w-prose text-lg leading-relaxed">
+              Les croissants et les brioches partent souvent avant 10 h. Pour
+              une tarte, écrivez la veille.
+            </p>
+            <ul className="price-list mt-8 max-w-3xl">
+              {products.map((product) => (
+                <li key={product.name} className="py-5">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="font-display text-xl leading-snug font-semibold md:text-2xl">
+                      {product.name}
+                    </h3>
+                    <p className="shop-text shrink-0 font-display text-lg font-semibold tabular-nums md:text-xl">
+                      {product.price}
+                    </p>
+                  </div>
+                  <p className="mt-2 max-w-prose text-lg leading-relaxed">
+                    {product.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section
+          id="horaires"
+          className="band-hours scroll-mt-20 px-5 py-16 md:px-10 md:py-24"
+        >
+          <div className="mx-auto max-w-6xl">
+            <h2 className={headingClassName}>Horaires</h2>
+            <dl className="hours-grid mt-8 gap-10">
+              <div>
+                <dt className="text-lg">Lundi au samedi</dt>
+                <dd className="shop-text mt-1 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+                  6 h 30 – 20 h
+                </dd>
+              </div>
+              <div>
+                <dt className="text-lg">Dimanche</dt>
+                <dd className="shop-text mt-1 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+                  7 h – 13 h
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section id="contact" className="scroll-mt-20 px-5 py-16 md:px-10 md:py-24">
+          <div className="contact-grid mx-auto max-w-6xl gap-10">
+            <div>
+              <h2 className={headingClassName}>Contact</h2>
+              <address className="mt-6 text-lg leading-relaxed not-italic">
+                Maison Dossou
+                <br />
+                Quartier Haie Vive
+                <br />
+                Cotonou, Bénin
+              </address>
+              <p className="mt-6">
+                <a
+                  href={PHONE_HREF}
+                  className="shop-text font-display text-2xl font-semibold underline decoration-2 underline-offset-4"
+                >
+                  {PHONE_DISPLAY}
+                </a>
+              </p>
+              <p className="mt-6">
+                <WhatsAppLink className={ctaClassName} />
+              </p>
+              <p className="mt-5">
+                <a
+                  href={MAPS_URL}
+                  className="shop-text text-lg underline decoration-1 underline-offset-4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Voir sur Google Maps
+                  <span className="sr-only"> (s’ouvre dans un nouvel onglet)</span>
+                </a>
+              </p>
+            </div>
+            <iframe
+              title="Carte du quartier Haie Vive à Cotonou, où se trouve Maison Dossou"
+              src={MAPS_EMBED}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="map-frame h-72 w-full sm:h-96"
+            />
+          </div>
+        </section>
+      </main>
+
+      <footer className="tone-indigo mt-auto px-5 py-10 md:px-10">
+        <div className="mx-auto max-w-6xl">
+          <p className="font-display text-2xl font-semibold">Maison Dossou</p>
+          <p className="mt-2 max-w-prose text-lg leading-relaxed">
+            Boulangerie artisanale, quartier Haie Vive, Cotonou. Depuis 2019.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </footer>
+    </>
   );
 }

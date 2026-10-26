@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-indigo: #173560;
+  --color-chalk: #eef3f6;
+  --color-ink: #1a2332;
+  --color-bissap: #c2334e;
+  --color-pineapple: #e8b423;
+  --color-paper: #f7f4ee;
+  --font-display: var(--font-bricolage), sans-serif;
+  --font-body: var(--font-literata), Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-padding-top: 8rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (min-width: 48rem) {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
+}
+
+.site-bar {
+  padding-bottom: 0.25rem;
+}
+
+.section-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.section-nav a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .site-bar {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .section-nav {
+    display: flex;
+    width: auto;
+    margin-left: auto;
+    gap: 1.5rem;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-chalk);
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3,
+header,
+footer,
+.btn-order,
+.shop-text {
+  font-family: var(--font-display), sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-indigo);
+  outline-offset: 3px;
+}
+
+.tone-indigo {
+  background-color: var(--color-indigo);
+  color: var(--color-paper);
+}
+
+.tone-indigo :focus-visible {
+  outline-color: var(--color-pineapple);
+}
+
+.band-hours {
+  background-color: var(--color-pineapple);
+  color: var(--color-ink);
+}
+
+.shop-text {
+  color: var(--color-indigo);
+}
+
+.btn-order {
+  background-color: var(--color-bissap);
+  color: var(--color-paper);
+}
+
+.btn-order:hover {
+  background-color: #9e243c;
+}
+
+.price-list {
+  border-top: 1px solid color-mix(in srgb, var(--color-indigo) 22%, transparent);
+}
+
+.price-list > li {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-indigo) 22%, transparent);
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+  overflow: visible;
+  white-space: normal;
+  background-color: var(--color-pineapple);
+  color: var(--color-ink);
+  padding: 0.75rem 1rem;
+}
+
+.map-frame {
+  border: 2px solid var(--color-indigo);
+}
+
+.hero-grid,
+.story-grid,
+.contact-grid,
+.hours-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 40rem) {
+  .hours-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 48rem) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: end;
+  }
+
+  .story-grid {
+    grid-template-columns: minmax(0, 40rem) 16rem;
+    align-items: start;
+  }
+}
+
+@media (min-width: 64rem) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+::selection {
+  background: var(--color-pineapple);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .sign-in {
+    animation: sign-in 700ms ease-out both;
+  }
+}
+
+@keyframes sign-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
